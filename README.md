@@ -9,7 +9,7 @@ A hub server that connects to and manages other MCP (Model Context Protocol) ser
 ## Overview
 
 This project builds an MCP hub server that can connect to other MCP servers, list their tools, and execute them.
-It is especially useful for bypassing Cursor’s 40-tool MCP limit.
+It is especially useful for bypassing Cursor's 40-tool MCP limit.
 Even outside of Cursor, it helps reduce AI mistakes by hiding infrequently used tools.
 
 ## Key Features
@@ -27,18 +27,38 @@ Add this to your `mcp.json`:
 ```json
 {
   "mcpServers": {
-    "other-tools": {
+    "mcp-hub": {
       "command": "npx",
       "args": [
         "-y",
         "mcp-hub-mcp",
         "--config-path",
-        "/Users/username/mcp.json"
+        "/path/to/your/mcp-hub-config.json"
       ]
     }
   }
 }
 ```
+
+#### Using Node (e.g., for local development or direct execution)
+
+If `npx` isn't picking up your local changes or you prefer to run the built server directly, you can configure it like this:
+
+```json
+{
+  "mcpServers": {
+    "mcp-hub": {
+      "command": "node",
+      "args": [
+        "/path/to/your/mcp-hub-mcp/dist/index.js",
+        "--config-path",
+        "/path/to/your/mcp-hub-config.json"
+      ]
+    }
+  }
+}
+```
+**Note:** Ensure you have built the project (e.g., `npm run build` or `pnpm build`) so that `dist/index.js` exists.
 
 ### System Prompt (or Cursor Rules)
 

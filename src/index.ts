@@ -21,7 +21,7 @@ const server = new McpServer({
 // Tool to return tools list from all servers
 server.tool(
   "list-all-tools",
-  "List all available tools from all connected servers. Before starting any task based on the user’s request, always begin by using this tool to get a list of any additional tools that may be available for use.",
+  "List all available tools from all connected servers. Before starting any task based on the user's request, always begin by using this tool to get a list of any additional tools that may be available for use.",
   {}, // Use empty object when there are no parameters
   async (args, extra) => {
     try {
@@ -127,11 +127,13 @@ async function startServer() {
     // Communication through standard input/output
     const transport = new StdioServerTransport();
     await server.connect(transport);
-    console.log("MCP-Hub-MCP server is running...");
+    //Log was writing to stdout, but now writing to stderr
+    //This is a workaround to avoid the log being mixed with the MCP-Hub-MCP server logs
+    console.error("MCP-Hub-MCP server is running...");
 
     // Disconnect all connections on process termination
     process.on("SIGINT", async () => {
-      console.log("Shutting down server...");
+      console.error("Shutting down server...");
       await serverManager.disconnectAll();
       process.exit(0);
     });
