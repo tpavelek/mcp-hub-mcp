@@ -6,6 +6,10 @@
 
 A hub server that connects to and manages other MCP (Model Context Protocol) servers.
 
+<a href="https://glama.ai/mcp/servers/@tpavelek/mcp-hub-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@tpavelek/mcp-hub-mcp/badge" alt="MCP-Hub-Server MCP server" />
+</a>
+
 ## Overview
 
 This project builds an MCP hub server that can connect to other MCP servers, list their tools, and execute them.
